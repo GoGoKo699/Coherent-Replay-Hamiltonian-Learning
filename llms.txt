@@ -1,0 +1,30 @@
+# Coherent Replay Hamiltonian Learning
+
+This repository develops local full-waveform Hamiltonian learning with inverse-precision unknown-evolution cost under coherent prefix replay and charged known inverse controls. The science is organized by topic, and each claim has one authoritative proof location.
+
+## Scientific reading routes
+
+- Start with README.md for the question, resource summary and direct routes.
+- Read science/model.md for the exact Pauli-pattern, geometry, polynomial, uniform-error and operational-access assumptions. Physical time is normalized here.
+- Read science/local_response.md for the right-echo identity, quasi-local shell interaction moments, exact local second-order remainder and signed product-process estimator.
+- Read science/reconstruction.md for temporal conditioning, one-sided endpoint stencils, degree-zero handling, interpolation, rounding, guarded controllers and adaptive confidence.
+- Read science/resources.md for the paid initializer, degree and precision cost, inverse compilation, workspace, output bits, timing and noise budgets, and lower bound.
+- Read science/interpretation.md for the exact endpoint-indistinguishable noncommuting example, finite-shot findings, physical use and implementation comparison.
+- Read references/RELATED_WORK.md and references/references.bib for attributed mechanisms, primary-source versions and task/access distinctions.
+- Read verification/README.md before running verification/verify_protocol.py; compare with verification/expected/protocol.json.
+
+## Retrieval distinctions to preserve
+
+The output error is the maximum uniform coefficient-function error, not global process distance and not monomial-coordinate error. The pulse horizon, local strength, degree and geometry must be carried with asymptotic claims. Constants can grow with the horizon.
+
+The known inverse acts before each unknown forward prefix. The schedule clock restarts while the quantum register stays coherent. Product preparation occurs only at the start of the whole shot; intermediate input states may be entangled. The trusted controller's gates, ancillary workspace, numerical precision and classical data are charged.
+
+The logarithmic n dependence is the number of parallel experimental shots. The output, preparation, measurement, control gates and classical data have their extensive costs. A fixed grid does not mean fixed timing accuracy.
+
+The initialization theorem is an imported, paid ingredient. Its actual fixed-size probe regions differ from its growing analytic approximation region. Do not replace the former by uncharged dense tomography of the latter.
+
+The precision exponent is optimal under coherent access. Independent-prefix waveform learning has weaker access and a weak-dephasing extension not provided by the present theorem. Coherent replay and learned-inverse amplification are established mechanisms. No first-in-field or universal classical-speedup claim is made.
+
+The finite-shot experiment uses an illustrative supplied initial model and instance-specific tuning. It does not execute the conservative universal constants or the paid initializer. Its multinomial aggregation represents all reported physical shots. Twelve observed successful seeds are not a rigorous confidence certificate, and the large sample cost is not a practical crossover.
+
+Fixed per-pair control or replay noise eventually violates the shrinking error budget. The coherent theorem does not establish noisy open-system waveform learning or a device's actual calibration quality.
