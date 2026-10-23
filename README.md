@@ -59,12 +59,14 @@ Start with [the source bridge and worked one-qubit example](learning/BRIDGE.md),
 
 ## Reproduce the finite checks
 
-From the repository root:
+With Python 3.12 or later, from the repository root:
 
 ```bash
 python3 -m pip install -r verification/requirements.txt
-python3 verification/verify_protocol.py --output verification/generated/protocol.json
+python3 verification/run_all.py
 ```
+
+The [verification wrapper](verification/CHECKS.md) checks local navigation and the learning map, reruns the finite experiment, and compares its scientific output with the committed reference using documented numerical tolerances. It leaves the reference untouched and reports any mismatch with a nonzero exit status. The same checks run in continuous integration.
 
 The two-qubit experiment independently checks the echo orientation, response identity, signed process estimator and finite-shot reconstruction. Its noncommuting true and nominal pulses have **exactly the same completed unitary**, while their intermediate prefixes differ.
 
