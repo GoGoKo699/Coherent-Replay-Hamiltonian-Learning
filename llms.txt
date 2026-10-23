@@ -11,7 +11,7 @@ This repository develops local full-waveform Hamiltonian learning with inverse-p
 - Read science/resources.md for the paid initializer, degree and precision cost, inverse compilation, workspace, output bits, timing and noise budgets, and lower bound.
 - Read science/interpretation.md for the exact endpoint-indistinguishable noncommuting example, finite-shot findings, physical use and implementation comparison.
 - Read references/RELATED_WORK.md and references/references.bib for attributed mechanisms, primary-source versions and task/access distinctions.
-- Read verification/README.md before running verification/verify_protocol.py; compare with verification/expected/protocol.json.
+- Read verification/README.md for the experiment and its scope. Read verification/CHECKS.md for the one-command regression check, numerical tolerances and CI. Run verification/run_all.py to rerun verification/verify_protocol.py and compare with verification/expected/protocol.json; --structure-only skips numerical reproduction.
 
 ## Study route
 
