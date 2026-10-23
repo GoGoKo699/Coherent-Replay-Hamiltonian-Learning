@@ -71,9 +71,9 @@ d_{\rm aux}=(m+1)L,\qquad
 L=O\!\left(r^D+\log\frac{1+r^D}{\zeta}+1\right).
 ```
 
-At the inverse-polynomial starting error $`\delta_0`$, internal accuracy can be chosen inverse-polynomial in $`m+1`$, with logarithmic corrections. Thus $`L`$ is polynomial in $`\log(m+2)`$ for fixed $`D`$, and $`d_{\rm aux}=\operatorname{poly}(m+1)`$. Polynomial derivative and interpolation factors can be absorbed by choosing a sufficiently small such $`\zeta`$.
+At the inverse-polynomial starting error $`\delta_0`$, internal accuracy can be chosen inverse-polynomial in $`m+1`$, with logarithmic corrections. Thus $`L`$ is polynomial in $`\log(m+2)`$ for fixed $`D`$, and $`d_{\rm aux}=\mathrm{poly}(m+1)`$. Polynomial derivative and interpolation factors can be absorbed by choosing a sufficiently small such $`\zeta`$.
 
-Crucially, this growing localization region certifies an approximation; the algorithm does not enumerate its entire Hilbert space. The actual inverse-probe semidefinite programs in Sections 6 and 7 use fixed isolation tolerances and constant-size regions for fixed geometry and horizon. Their size does not grow with the final $`\epsilon`$. Consequently the paid initializer has $`\operatorname{poly}(m+1)\log(n/\rho)`$ sample cost and polynomial classical processing in $`n,m,\log(1/\rho)`$. Its potentially large fixed-horizon constants remain part of the cost.
+Crucially, this growing localization region certifies an approximation; the algorithm does not enumerate its entire Hilbert space. The actual inverse-probe semidefinite programs in Sections 6 and 7 use fixed isolation tolerances and constant-size regions for fixed geometry and horizon. Their size does not grow with the final $`\epsilon`$. Consequently the paid initializer has $`\mathrm{poly}(m+1)\log(n/\rho)`$ sample cost and polynomial classical processing in $`n,m,\log(1/\rho)`$. Its potentially large fixed-horizon constants remain part of the cost.
 
 If $`\epsilon\geq\delta_0`$, this initializer alone already meets the target. There is no inverse-precision refinement cost in that branch. The result relies on F2026's established initialization theorem; it does not claim a new initializer or experimentally demonstrate its large-system implementation.
 
@@ -93,7 +93,7 @@ For one inverse with operator error at most $`\nu`$, this supplies a bound of th
 
 ```math
 C_{\rm inv}(n,m,\nu)
-=\widetilde O\!\left(n\,\operatorname{poly}(m+1)\right),
+=\widetilde O\!\left(n\,\mathrm{poly}(m+1)\right),
 ```
 
 where the suppressed logarithms include $`n/\nu`$. The total control count is $`\sum_{j,t} Bq_j C_{\rm inv}(n,m,\nu_j)`$. It has the precision exponent one up to logarithms. The simulator's extra qubits and their preparation are counted; its lattice layout uses a constant number of ancillary qubits per system site, with further workspace for the selected arithmetic implementation.

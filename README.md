@@ -8,7 +8,7 @@ For fixed local strength, geometry and degree $`m`$, the total unknown-evolution
 
 ```math
 \widetilde O\!\left(
-\frac{\operatorname{poly}(m)\log(n/\rho)}{\epsilon}
+\frac{\mathrm{poly}(m)\log(n/\rho)}{\epsilon}
 \right),
 ```
 
@@ -20,7 +20,7 @@ including a paid coarse initializer. Here $`n`$ is the number of system qubits, 
 | Unknown evolution | Inverse-precision cost up to logarithms; a loose refinement degree factor is $`m^7`$ |
 | Fresh preparations | Logarithmic growth in inverse precision, with polynomial degree and confidence factors |
 | Coherent duration | A longest experiment uses order $`1/\epsilon`$ replayed echoes |
-| Known inverse controls | Charged local lattice compilation: total $`\widetilde O(n\,\operatorname{poly}(m)/\epsilon)`$ gates, with ancillary workspace |
+| Known inverse controls | Charged local lattice compilation: total $`\widetilde O(n\,\mathrm{poly}(m)/\epsilon)`$ gates, with ancillary workspace |
 | Readout and classical data | At least linear in system size; the logarithmic shot count does not remove these costs |
 | Access | Repeatable forward prefixes, coherent clock restart and switchable trusted controls |
 
