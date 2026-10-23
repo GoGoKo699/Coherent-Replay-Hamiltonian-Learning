@@ -34,7 +34,7 @@ For the proofs, use the dimensionless coordinate $`x=t/T`$ and Hamiltonian $`H(x
 ```math
 H(t)=\sum_{a\in\mathcal A}h_a(t)P_a,
 \qquad
-\sup_{t\in[0,1]}\sup_i\sum_{a:\,i\in\operatorname{supp}(P_a)}|h_a(t)|\leq J.
+\sup_{t\in[0,1]}\sup_i\sum_{a:\,i\in\mathrm{supp}(P_a)}|h_a(t)|\leq J.
 ```
 
 The fixed dimensionless strength is the physical strength multiplied by $`T`$. In particular, every coefficient has supremum at most $`J`$. Constants below may depend on $`J`$ and the fixed geometry, and can grow rapidly with the physical horizon. The theorem is not uniform in a growing $`JT`$.
@@ -119,11 +119,11 @@ A longest shot contains $`O(\tau/\epsilon)`$ coherent echo repetitions, where th
 For fixed-dimensional finite-range lattices, established high-precision Hamiltonian simulation compiles the known controls using a total of
 
 ```math
-\widetilde O\!\left(\frac{n\,\operatorname{poly}(m)}{\epsilon}
+\widetilde O\!\left(\frac{n\,\mathrm{poly}(m)}{\epsilon}
 \log\frac1\rho\right)
 ```
 
-local gates, in addition to the paid initialization. Polynomial factors for schedule evaluation and timing arithmetic are included. The implementation uses the $`n`$ system qubits and additional compiler workspace; a conservative bound is $`O(n\,\operatorname{poly}(m,\log(n/\epsilon)))`$ qubits. The lattice simulation theorem itself uses a constant number of ancillas per site. No ancilla-free gate claim is made.
+local gates, in addition to the paid initialization. Polynomial factors for schedule evaluation and timing arithmetic are included. The implementation uses the $`n`$ system qubits and additional compiler workspace; a conservative bound is $`O(n\,\mathrm{poly}(m,\log(n/\epsilon)))`$ qubits. The lattice simulation theorem itself uses a constant number of ancillas per site. No ancilla-free gate claim is made.
 
 Fresh-shot preparation, measurement and classical processing have at least their linear-in-$`n`$ cost. The logarithmic dependence on $`n`$ in $`Q`$ and $`S`$ concerns the number of parallel experimental shots, not the complete physical or classical workload. Precision-dependent controller synthesis and output bits are detailed in [resources](resources.md).
 

@@ -157,26 +157,26 @@ Let $`P`$ be any nonidentity canonical Hermitian Pauli, and choose a one-site Pa
 
 ```math
 B=iPQ,\qquad
-l_P(t)=2^{-n}\operatorname{Tr}(PL_t).
+l_P(t)=2^{-n}\mathrm{Tr}(PL_t).
 ```
 
 The operator $`B`$ is a Hermitian signed Pauli, of the same weight as $`P`$, and
 
 ```math
-[B,Q]=2iP,\qquad \operatorname{Tr}(BQ)=0.
+[B,Q]=2iP,\qquad \mathrm{Tr}(BQ)=0.
 ```
 
 Consider the process transfer coefficient
 
 ```math
 f_{P,t}(q)
-=2^{-n}\operatorname{Tr}\bigl(QE_t^qBE_t^{-q}\bigr).
+=2^{-n}\mathrm{Tr}\bigl(QE_t^qBE_t^{-q}\bigr).
 ```
 
 Cyclicity and the commutator identity give
 
 ```math
-i\,2^{-n}\operatorname{Tr}\bigl(B[L_t,Q]\bigr)
+i\,2^{-n}\mathrm{Tr}\bigl(B[L_t,Q]\bigr)
 =2l_P(t).
 ```
 
@@ -193,7 +193,7 @@ There is also a useful coefficient-size estimate. Since
 
 ```math
 2l_P(t)
-=-i\,2^{-n}\operatorname{Tr}\bigl(B[Q,L_t]\bigr),
+=-i\,2^{-n}\mathrm{Tr}\bigl(B[Q,L_t]\bigr),
 ```
 
 Lemma 1 gives
@@ -216,7 +216,7 @@ Write
 ```math
 B=\sigma_B\bigotimes_jB_j,\qquad
 \sigma_B\in\{-1,1\},\qquad
-w=|\operatorname{supp}B|.
+w=|\mathrm{supp}\,B|.
 ```
 
 In one snapshot, independently choose a uniform Pauli axis $`a_j\in\{X,Y,Z\}`$ and eigenvalue $`s_j\in\{-1,1\}`$ on each input qubit. Prepare their product eigenstate, apply the repeated echo, and measure every qubit in an independent uniform Pauli axis $`b_j`$. Let $`y_i`$ be the measured eigenvalue at the site of $`Q`$.
@@ -225,7 +225,7 @@ Define
 
 ```math
 X_B=\sigma_B3^w
-\prod_{j\in\operatorname{supp}B}
+\prod_{j\in\mathrm{supp}\,B}
 s_j\,\mathbf1\{a_j=B_j\},
 \qquad
 Y_Q=3y_i\,\mathbf1\{b_i=Q\}.
@@ -239,7 +239,7 @@ If $`\rho_{\rm in}`$ is the prepared product state, the single-site identities i
 \mathbb E[X_B\rho_{\rm in}]=\frac{B}{2^n},
 \qquad
 \mathbb E[Y_Q\mid\rho_{\rm out}]
-=\operatorname{Tr}(Q\rho_{\rm out}).
+=\mathrm{Tr}(Q\rho_{\rm out}).
 ```
 
 Thus $`Z_{B,Q}=X_BY_Q`$ is unbiased for $`f_{P,t}(q)`$. Since signs and measurement outcomes square to one, while the matching events have probabilities $`3^{-w}`$ and $`1/3`$,
@@ -270,7 +270,7 @@ For an original ansatz term $`P_a`$, taking its coefficient in the exact respons
 ```math
 r_a(t)
 =l_{P_a}'(t)
-+i\,2^{-n}\operatorname{Tr}
++i\,2^{-n}\mathrm{Tr}
 \bigl([P_a,\widehat H(t)]L_t\bigr).
 ```
 
@@ -281,7 +281,7 @@ i[P_a,\widehat H(t)]
 =\sum_{S\in\mathcal S_a}c_{a,S}(t)S.
 ```
 
-Only reference terms meeting $`\operatorname{supp}P_a`$ can contribute. There are at most $`dk`$ of them, every resulting nonidentity Pauli has weight at most $`2k-1`$, and
+Only reference terms meeting $`\mathrm{supp}\,P_a`$ can contribute. There are at most $`dk`$ of them, every resulting nonidentity Pauli has weight at most $`2k-1`$, and
 
 ```math
 \sum_{S\in\mathcal S_a}|c_{a,S}(t)|

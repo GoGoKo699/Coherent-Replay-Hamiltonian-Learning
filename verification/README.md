@@ -82,8 +82,8 @@ At $`t=0.63`$, the recorded checks are:
 For a one-site $`Q`$ anticommuting with a response Pauli $`P`$, the implementation uses $`B=iPQ`$, including its Pauli sign. It checks
 
 ```math
-2^{-n}\operatorname{Tr}[Q E_t^q B E_t^{-q}]
- =2q\,2^{-n}\operatorname{Tr}(P L_t)+\text{remainder}.
+2^{-n}\mathrm{Tr}[Q E_t^q B E_t^{-q}]
+ =2q\,2^{-n}\mathrm{Tr}(P L_t)+\text{remainder}.
 ```
 
 With $`q=1`$, reducing the residual scale from 0.08 to 0.005 reduces the maximum transfer remainder quadratically. The ratio of remainder to squared residual scale stays between 0.01152 and 0.01157. This is evidence for the local expansion in this instance, not a numerical proof of its uniform bound.

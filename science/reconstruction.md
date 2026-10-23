@@ -27,9 +27,9 @@ For an original Hamiltonian string $`P_a`$, differentiate once more:
 \begin{aligned}
 l_{P_a}''(t)
 ={}&r_a'(t)
--i\,2^{-n}\operatorname{Tr}
+-i\,2^{-n}\mathrm{Tr}
 \bigl([P_a,\widehat H'(t)]L_t\bigr)\\
-&-i\,2^{-n}\operatorname{Tr}
+&-i\,2^{-n}\mathrm{Tr}
 \bigl([P_a,\widehat H(t)]L_t'\bigr).
 \end{aligned}
 ```
