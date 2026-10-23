@@ -1,0 +1,1208 @@
+{
+  "scope": "Finite dense two-qubit verification of the echo orientation, local response, finite-shot process estimator and waveform reconstruction. Numerical checks are not proofs. No noisy-channel or control-error robustness is established.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "configuration": {
+    "seed": 20261023,
+    "shots_per_nonzero_prefix_per_stage": 20000000,
+    "stages": 6,
+    "trials": 12,
+    "qubits": 2,
+    "degree": 3,
+    "model_paulis": [
+      "XI",
+      "ZZ",
+      "IZ",
+      "IX",
+      "YY"
+    ],
+    "initial_bound": 0.05,
+    "tau": 0.1,
+    "finite_difference_h": 0.125,
+    "chebyshev_lobatto_nodes": [
+      0.0,
+      0.25,
+      0.75,
+      1.0
+    ],
+    "queried_prefixes": [
+      0.0,
+      0.125,
+      0.25,
+      0.375,
+      0.625,
+      0.75,
+      0.875,
+      1.0
+    ],
+    "uniform_error_evaluation": "Endpoints and real roots of the cubic-error derivative; floating-point, not interval-certified."
+  },
+  "algebra_checks": {
+    "prefix": 0.63,
+    "response_differential_identity_operator_error": 1.1777521168449768e-11,
+    "response_differential_identity_relative_error": 9.25741271125257e-10,
+    "right_echo_vs_exact_residual_evolution": 3.4656412331817293e-13,
+    "wrong_left_echo_vs_same_residual_evolution": 0.0010944825389830153,
+    "quadrature_vs_symmetric_parameter_derivative": 1.365901756395921e-12,
+    "shadow_mean_vs_direct_transfer_max_error": 2.820244038304054e-13,
+    "max_shadow_second_moment_over_proved_bound": 1.0000000000000004,
+    "local_linear_response_remainder": [
+      {
+        "delta": 0.08,
+        "q": 1,
+        "max_transfer_remainder": 7.374192861522703e-05,
+        "remainder_over_delta_squared": 0.011522176346129223
+      },
+      {
+        "delta": 0.04,
+        "q": 1,
+        "max_transfer_remainder": 1.8471689288296193e-05,
+        "remainder_over_delta_squared": 0.01154480580518512
+      },
+      {
+        "delta": 0.02,
+        "q": 1,
+        "max_transfer_remainder": 4.622403899264319e-06,
+        "remainder_over_delta_squared": 0.011556009748160796
+      },
+      {
+        "delta": 0.01,
+        "q": 1,
+        "max_transfer_remainder": 1.156158394163522e-06,
+        "remainder_over_delta_squared": 0.011561583941635218
+      },
+      {
+        "delta": 0.005,
+        "q": 1,
+        "max_transfer_remainder": 2.891091020934723e-07,
+        "remainder_over_delta_squared": 0.011564364083738891
+      }
+    ]
+  },
+  "endpoint_degenerate_noncommuting_example": {
+    "exact_argument": "H(1-t)=-H(t) implies that the second half retraces the first half in inverse time order, so U(1)=I. Both nominal and unknown schedules satisfy this identity.",
+    "noncommuting_hamiltonian_times": [
+      0.1,
+      0.35
+    ],
+    "commutator_operator_norm": 0.025122781104026486,
+    "nominal_endpoint_distance_from_identity": 1.3256880742312696e-14,
+    "unknown_endpoint_distance_from_identity": 1.1121275836391815e-14,
+    "endpoint_operator_difference": 2.3458549206383643e-15,
+    "max_sampled_prefix_operator_difference": 0.011893637932330448,
+    "max_sampled_prefix_time": 0.5,
+    "uniform_coefficient_difference": 0.04249999999999999,
+    "example_prefix": 0.375,
+    "example_observable_coefficient": "XI",
+    "example_signed_input_pauli": {
+      "word": "ZI",
+      "sign": -1
+    },
+    "example_output_pauli": "YI",
+    "example_unamplified_transfer": -0.017146503870739217,
+    "endpoint_identifiability": "No endpoint-only experiment, even with perfect tomography or repetitions, can distinguish this pair. This elementary nonidentifiability example is not a novelty claim."
+  },
+  "finite_shot_example": {
+    "seed": 20261023,
+    "initial_uniform_error": 0.04249999999999999,
+    "all_stages_within_maintained_bounds": true,
+    "final_uniform_error": 0.0005222440166887663,
+    "learned_endpoint_operator_error": 7.145965837984249e-05,
+    "history": [
+      {
+        "q": 2,
+        "maintained_input_bound": 0.05,
+        "max_exact_transfer_standard_error": 0.0011618950038622252,
+        "shots_per_nonzero_prefix": 20000000,
+        "fresh_preparations": 140000000,
+        "unknown_prefix_queries": 280000000,
+        "unknown_evolution_time": 160000000.0,
+        "known_inverse_total_target_simulation_time": 160000000.0,
+        "stage": 0,
+        "output_bound": 0.025,
+        "uniform_waveform_error": 0.006387871499999989,
+        "error_over_input_bound": 0.12775742999999978,
+        "error_over_previous_actual_error": 0.1503028588235292,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0027033499999999724,
+          "ZZ": 0.004787560612329475,
+          "IZ": 0.006387871499999989,
+          "IX": 0.0035441487499999857,
+          "YY": 0.0041763609059326
+        }
+      },
+      {
+        "q": 4,
+        "maintained_input_bound": 0.025,
+        "max_exact_transfer_standard_error": 0.0011618950038622252,
+        "shots_per_nonzero_prefix": 20000000,
+        "fresh_preparations": 140000000,
+        "unknown_prefix_queries": 560000000,
+        "unknown_evolution_time": 320000000.0,
+        "known_inverse_total_target_simulation_time": 320000000.0,
+        "stage": 1,
+        "output_bound": 0.0125,
+        "uniform_waveform_error": 0.002762472547257016,
+        "error_over_input_bound": 0.11049890189028064,
+        "error_over_previous_actual_error": 0.43245587317418965,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0008125051285634447,
+          "ZZ": 0.0026711749999999896,
+          "IZ": 0.00087827415466022,
+          "IX": 0.002762472547257016,
+          "YY": 0.0018974249999999914
+        }
+      },
+      {
+        "q": 8,
+        "maintained_input_bound": 0.0125,
+        "max_exact_transfer_standard_error": 0.0011618950038622252,
+        "shots_per_nonzero_prefix": 20000000,
+        "fresh_preparations": 140000000,
+        "unknown_prefix_queries": 1120000000,
+        "unknown_evolution_time": 640000000.0,
+        "known_inverse_total_target_simulation_time": 640000000.0,
+        "stage": 2,
+        "output_bound": 0.00625,
+        "uniform_waveform_error": 0.0023457172657247436,
+        "error_over_input_bound": 0.18765738125797948,
+        "error_over_previous_actual_error": 0.8491368604020744,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0005948749999999596,
+          "ZZ": 0.000868757549915255,
+          "IZ": 0.0004587568152118855,
+          "IX": 0.0004670374999999648,
+          "YY": 0.0023457172657247436
+        }
+      },
+      {
+        "q": 16,
+        "maintained_input_bound": 0.00625,
+        "max_exact_transfer_standard_error": 0.0011618950038622252,
+        "shots_per_nonzero_prefix": 20000000,
+        "fresh_preparations": 140000000,
+        "unknown_prefix_queries": 2240000000,
+        "unknown_evolution_time": 1280000000.0,
+        "known_inverse_total_target_simulation_time": 1280000000.0,
+        "stage": 3,
+        "output_bound": 0.003125,
+        "uniform_waveform_error": 0.000742668750000013,
+        "error_over_input_bound": 0.11882700000000207,
+        "error_over_previous_actual_error": 0.31660625125277175,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0005823812500000262,
+          "ZZ": 0.0007424687500000107,
+          "IZ": 0.0002842312499999923,
+          "IX": 0.00023494307131343605,
+          "YY": 0.000742668750000013
+        }
+      },
+      {
+        "q": 32,
+        "maintained_input_bound": 0.003125,
+        "max_exact_transfer_standard_error": 0.0011618950038622252,
+        "shots_per_nonzero_prefix": 20000000,
+        "fresh_preparations": 140000000,
+        "unknown_prefix_queries": 4480000000,
+        "unknown_evolution_time": 2560000000.0,
+        "known_inverse_total_target_simulation_time": 2560000000.0,
+        "stage": 4,
+        "output_bound": 0.0015625,
+        "uniform_waveform_error": 0.0008850074209876896,
+        "error_over_input_bound": 0.2832023747160607,
+        "error_over_previous_actual_error": 1.1916583550710518,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0003558891185246325,
+          "ZZ": 0.0008850074209876896,
+          "IZ": 0.00031379062500001446,
+          "IX": 0.0005538545306720221,
+          "YY": 0.0002273986793241715
+        }
+      },
+      {
+        "q": 64,
+        "maintained_input_bound": 0.0015625,
+        "max_exact_transfer_standard_error": 0.0011618950038622252,
+        "shots_per_nonzero_prefix": 20000000,
+        "fresh_preparations": 140000000,
+        "unknown_prefix_queries": 8960000000,
+        "unknown_evolution_time": 5120000000.0,
+        "known_inverse_total_target_simulation_time": 5120000000.0,
+        "stage": 5,
+        "output_bound": 0.00078125,
+        "uniform_waveform_error": 0.0005222440166887663,
+        "error_over_input_bound": 0.3342361706808104,
+        "error_over_previous_actual_error": 0.5901012853721943,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0002749750000000679,
+          "ZZ": 0.0002392562499999903,
+          "IZ": 0.00011936617363155668,
+          "IX": 6.94649524739253e-05,
+          "YY": 0.0005222440166887663
+        }
+      }
+    ],
+    "total_fresh_preparations": 840000000,
+    "total_unknown_prefix_queries": 17640000000,
+    "total_unknown_evolution_time": 10080000000.0,
+    "total_known_inverse_target_simulation_time": 10080000000.0,
+    "maximum_coherent_echo_count": 64,
+    "truth_chebyshev_coefficients": [
+      [
+        0.0,
+        0.289375,
+        0.0,
+        0.003125
+      ],
+      [
+        0.0,
+        0.19312500000000002,
+        0.0,
+        0.0043749999999999995
+      ],
+      [
+        0.0,
+        0.15,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.14250000000000002,
+        0.0,
+        0.042499999999999996
+      ],
+      [
+        0.0,
+        0.09,
+        0.0,
+        0.03
+      ]
+    ],
+    "initial_chebyshev_coefficients": [
+      [
+        0.0,
+        0.25,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.2,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.15,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.135,
+        0.0,
+        0.045
+      ],
+      [
+        0.0,
+        0.09,
+        0.0,
+        0.03
+      ]
+    ],
+    "learned_chebyshev_coefficients": [
+      [
+        -1.552399048028352e-05,
+        0.2894741891142485,
+        -6.730258506770529e-05,
+        0.00321795931020358
+      ],
+      [
+        7.23160755743413e-06,
+        0.19322565856176172,
+        -8.790546901982042e-05,
+        0.004432923826775907
+      ],
+      [
+        4.616894060432725e-06,
+        0.15004480508895832,
+        2.4866974005344263e-05,
+        4.5077216607457884e-05
+      ],
+      [
+        2.843150900173189e-06,
+        0.1424588083466239,
+        -3.4260002137143314e-05,
+        0.04250314355213917
+      ],
+      [
+        3.069729675904445e-05,
+        0.09017117930088851,
+        0.00018473564908534575,
+        0.03013563176995586
+      ]
+    ],
+    "waveform_samples": {
+      "times": [
+        0.0,
+        0.05,
+        0.1,
+        0.15000000000000002,
+        0.2,
+        0.25,
+        0.30000000000000004,
+        0.35000000000000003,
+        0.4,
+        0.45,
+        0.5,
+        0.55,
+        0.6000000000000001,
+        0.65,
+        0.7000000000000001,
+        0.75,
+        0.8,
+        0.8500000000000001,
+        0.9,
+        0.9500000000000001,
+        1.0
+      ],
+      "truth": [
+        [
+          -0.29250000000000004,
+          -0.2611125,
+          -0.23040000000000002,
+          -0.2002875,
+          -0.1707,
+          -0.1415625,
+          -0.11279999999999997,
+          -0.08433749999999998,
+          -0.05609999999999999,
+          -0.028012499999999992,
+          0.0,
+          0.028012500000000023,
+          0.05610000000000005,
+          0.08433750000000001,
+          0.11280000000000004,
+          0.1415625,
+          0.17070000000000002,
+          0.20028750000000006,
+          0.23040000000000002,
+          0.2611125,
+          0.29250000000000004
+        ],
+        [
+          -0.1975,
+          -0.17475750000000004,
+          -0.15296,
+          -0.13200250000000002,
+          -0.11178,
+          -0.0921875,
+          -0.07311999999999999,
+          -0.05447249999999999,
+          -0.03614,
+          -0.0180175,
+          0.0,
+          0.01801750000000002,
+          0.03614000000000004,
+          0.054472500000000014,
+          0.07312000000000003,
+          0.0921875,
+          0.11178000000000003,
+          0.13200250000000005,
+          0.15296,
+          0.17475750000000007,
+          0.1975
+        ],
+        [
+          -0.15,
+          -0.135,
+          -0.12,
+          -0.105,
+          -0.09,
+          -0.075,
+          -0.059999999999999984,
+          -0.04499999999999999,
+          -0.029999999999999992,
+          -0.014999999999999996,
+          0.0,
+          0.015000000000000013,
+          0.030000000000000027,
+          0.045000000000000005,
+          0.06000000000000002,
+          0.075,
+          0.09000000000000001,
+          0.10500000000000002,
+          0.12,
+          0.135,
+          0.15
+        ],
+        [
+          -0.18500000000000003,
+          -0.13743000000000005,
+          -0.09904000000000003,
+          -0.06881000000000001,
+          -0.045720000000000004,
+          -0.02875000000000001,
+          -0.016880000000000006,
+          -0.009090000000000004,
+          -0.004360000000000006,
+          -0.0016700000000000013,
+          0.0,
+          0.0016700000000000048,
+          0.00436000000000001,
+          0.009090000000000015,
+          0.01688000000000002,
+          0.02875000000000001,
+          0.04572000000000004,
+          0.06881000000000008,
+          0.09904000000000003,
+          0.13743000000000005,
+          0.18500000000000003
+        ],
+        [
+          -0.12,
+          -0.08748000000000003,
+          -0.06144000000000001,
+          -0.04115999999999999,
+          -0.02591999999999999,
+          -0.015,
+          -0.007679999999999999,
+          -0.0032399999999999964,
+          -0.000959999999999999,
+          -0.00012000000000000031,
+          0.0,
+          0.00011999999999999945,
+          0.0009600000000000025,
+          0.0032400000000000033,
+          0.007680000000000006,
+          0.015,
+          0.025920000000000012,
+          0.04116000000000003,
+          0.06144000000000001,
+          0.08748000000000002,
+          0.12
+        ]
+      ],
+      "initial": [
+        [
+          -0.25,
+          -0.225,
+          -0.2,
+          -0.175,
+          -0.15,
+          -0.125,
+          -0.09999999999999998,
+          -0.07499999999999998,
+          -0.04999999999999999,
+          -0.024999999999999994,
+          0.0,
+          0.025000000000000022,
+          0.050000000000000044,
+          0.07500000000000001,
+          0.10000000000000003,
+          0.125,
+          0.15000000000000002,
+          0.17500000000000004,
+          0.2,
+          0.22500000000000003,
+          0.25
+        ],
+        [
+          -0.2,
+          -0.18000000000000002,
+          -0.16000000000000003,
+          -0.13999999999999999,
+          -0.12,
+          -0.1,
+          -0.07999999999999999,
+          -0.05999999999999999,
+          -0.039999999999999994,
+          -0.019999999999999997,
+          0.0,
+          0.020000000000000018,
+          0.040000000000000036,
+          0.06000000000000001,
+          0.08000000000000003,
+          0.1,
+          0.12000000000000002,
+          0.14000000000000004,
+          0.16000000000000003,
+          0.18000000000000005,
+          0.2
+        ],
+        [
+          -0.15,
+          -0.135,
+          -0.12,
+          -0.105,
+          -0.09,
+          -0.075,
+          -0.059999999999999984,
+          -0.04499999999999999,
+          -0.029999999999999992,
+          -0.014999999999999996,
+          0.0,
+          0.015000000000000013,
+          0.030000000000000027,
+          0.045000000000000005,
+          0.06000000000000002,
+          0.075,
+          0.09000000000000001,
+          0.10500000000000002,
+          0.12,
+          0.135,
+          0.15
+        ],
+        [
+          -0.18000000000000002,
+          -0.13122,
+          -0.09216,
+          -0.06174,
+          -0.03887999999999999,
+          -0.022500000000000006,
+          -0.011519999999999996,
+          -0.00486,
+          -0.0014400000000000038,
+          -0.00018000000000000134,
+          0.0,
+          0.00018000000000000307,
+          0.0014400000000000072,
+          0.004860000000000003,
+          0.011520000000000016,
+          0.022500000000000006,
+          0.038880000000000026,
+          0.06174000000000006,
+          0.09216,
+          0.13122000000000006,
+          0.18000000000000002
+        ],
+        [
+          -0.12,
+          -0.08748000000000003,
+          -0.06144000000000001,
+          -0.04115999999999999,
+          -0.02591999999999999,
+          -0.015,
+          -0.007679999999999999,
+          -0.0032399999999999964,
+          -0.000959999999999999,
+          -0.00012000000000000031,
+          0.0,
+          0.00011999999999999945,
+          0.0009600000000000025,
+          0.0032400000000000033,
+          0.007680000000000006,
+          0.015,
+          0.025920000000000012,
+          0.04116000000000003,
+          0.06144000000000001,
+          0.08748000000000002,
+          0.12
+        ]
+      ],
+      "learned": [
+        [
+          -0.29277497500000005,
+          -0.2612791010070499,
+          -0.23048099832850638,
+          -0.20030343594092465,
+          -0.17066918282085985,
+          -0.14150100794486709,
+          -0.11272168028950144,
+          -0.08425396883131807,
+          -0.05602064254687205,
+          -0.027944470412718515,
+          5.177859458742177e-05,
+          0.028045335498490684,
+          0.056113431322436125,
+          0.08433329708986856,
+          0.11278216382423302,
+          0.14153726254897422,
+          0.17067582428753725,
+          0.20027508006336686,
+          0.23041226089990788,
+          0.2611645978206054,
+          0.2926093218489041
+        ],
+        [
+          -0.19773925625,
+          -0.174907874035404,
+          -0.1530375195861524,
+          -0.13202180273040248,
+          -0.11175433329631178,
+          -0.09212872111203761,
+          -0.07303857600573731,
+          -0.0543775078055683,
+          -0.036039126339687956,
+          -0.017917041436253642,
+          9.513707657725455e-05,
+          0.018103799370647378,
+          0.03621533561779933,
+          0.054536135989875695,
+          0.07317259065871917,
+          0.0922310897961723,
+          0.11181802357407779,
+          0.1320397821642782,
+          0.15300275573861616,
+          0.17481333446893432,
+          0.19757790852707524
+        ],
+        [
+          -0.1500603984375,
+          -0.13503002684090595,
+          -0.1200083972441389,
+          -0.10499442779400027,
+          -0.08998703663729148,
+          -0.07498514192081394,
+          -0.05998766179136908,
+          -0.04499351439575833,
+          -0.030001617880783104,
+          -0.015010890393244825,
+          -2.0250079944911538e-05,
+          0.014971384912315233,
+          0.029965096436734173,
+          0.044961966346510444,
+          0.059963076494842706,
+          0.07496950873492945,
+          0.08998234491996936,
+          0.10500266690316094,
+          0.12003155653770277,
+          0.13507009567679346,
+          0.15011936617363156
+        ],
+        [
+          -0.18499336875000005,
+          -0.13741200456964842,
+          -0.09901268979664438,
+          -0.06877534898573648,
+          -0.0456799066916735,
+          -0.02870628746920404,
+          -0.01683441587307674,
+          -0.009044216458040311,
+          -0.004315613778843385,
+          -0.0016285323902346192,
+          3.71031530373165e-05,
+          0.001701368296223773,
+          0.004384338484576082,
+          0.009106089163345581,
+          0.01688669577778363,
+          0.028746233773141526,
+          0.04570477859467067,
+          0.06878240568762238,
+          0.09899919049724792,
+          0.13737520846879875,
+          0.18493053504752605
+        ],
+        [
+          -0.12009137812499998,
+          -0.08751812443391818,
+          -0.06144677777918342,
+          -0.04115408299831674,
+          -0.025916784928839268,
+          -0.015011628408272026,
+          -0.00771535827413606,
+          -0.003304719363952449,
+          -0.001056456515242249,
+          -0.00024731456552651125,
+          -0.0001540383523263013,
+          -5.3372713162677665e-05,
+          0.0007779375144433033,
+          0.0030631474929705763,
+          0.007525512384898091,
+          0.014888287352704768,
+          0.025874727558869583,
+          0.04120808816587146,
+          0.0616116243361893,
+          0.08780859123230214,
+          0.12052224401668876
+        ]
+      ]
+    }
+  },
+  "noiseless_same_stencil_example": {
+    "seed": 20261023,
+    "initial_uniform_error": 0.04249999999999999,
+    "all_stages_within_maintained_bounds": true,
+    "final_uniform_error": 8.707148157555154e-07,
+    "learned_endpoint_operator_error": 3.599770993130929e-16,
+    "history": [
+      {
+        "q": 2,
+        "maintained_input_bound": 0.05,
+        "max_exact_transfer_standard_error": 0.0,
+        "shots_per_nonzero_prefix": 0,
+        "fresh_preparations": 0,
+        "unknown_prefix_queries": 0,
+        "unknown_evolution_time": 0.0,
+        "known_inverse_total_target_simulation_time": 0.0,
+        "stage": 0,
+        "output_bound": 0.025,
+        "uniform_waveform_error": 0.001784989907606411,
+        "error_over_input_bound": 0.03569979815212822,
+        "error_over_previous_actual_error": 0.04199976253191556,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.0012658131652179495,
+          "ZZ": 0.001784989907606411,
+          "IZ": 1.1876021617816894e-06,
+          "IX": 0.0010198314957875505,
+          "YY": 7.209891301568399e-06
+        }
+      },
+      {
+        "q": 4,
+        "maintained_input_bound": 0.025,
+        "max_exact_transfer_standard_error": 0.0,
+        "shots_per_nonzero_prefix": 0,
+        "fresh_preparations": 0,
+        "unknown_prefix_queries": 0,
+        "unknown_evolution_time": 0.0,
+        "known_inverse_total_target_simulation_time": 0.0,
+        "stage": 1,
+        "output_bound": 0.0125,
+        "uniform_waveform_error": 0.00037906742594276204,
+        "error_over_input_bound": 0.015162697037710482,
+        "error_over_previous_actual_error": 0.21236390431533247,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 0.00028224653806392213,
+          "ZZ": 0.00037906742594276204,
+          "IZ": 2.951297291768645e-07,
+          "IX": 0.0002234451764752307,
+          "YY": 1.4819045610221324e-06
+        }
+      },
+      {
+        "q": 8,
+        "maintained_input_bound": 0.0125,
+        "max_exact_transfer_standard_error": 0.0,
+        "shots_per_nonzero_prefix": 0,
+        "fresh_preparations": 0,
+        "unknown_prefix_queries": 0,
+        "unknown_evolution_time": 0.0,
+        "known_inverse_total_target_simulation_time": 0.0,
+        "stage": 2,
+        "output_bound": 0.00625,
+        "uniform_waveform_error": 8.2993335651473e-05,
+        "error_over_input_bound": 0.00663946685211784,
+        "error_over_previous_actual_error": 0.21894082680690355,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 6.174101673911429e-05,
+          "ZZ": 8.2993335651473e-05,
+          "IZ": 5.477402370032323e-08,
+          "IX": 4.8946962704344765e-05,
+          "YY": 2.2195765021946926e-07
+        }
+      },
+      {
+        "q": 16,
+        "maintained_input_bound": 0.00625,
+        "max_exact_transfer_standard_error": 0.0,
+        "shots_per_nonzero_prefix": 0,
+        "fresh_preparations": 0,
+        "unknown_prefix_queries": 0,
+        "unknown_evolution_time": 0.0,
+        "known_inverse_total_target_simulation_time": 0.0,
+        "stage": 3,
+        "output_bound": 0.003125,
+        "uniform_waveform_error": 1.816861595632142e-05,
+        "error_over_input_bound": 0.0029069785530114267,
+        "error_over_previous_actual_error": 0.21891656497118941,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 1.3507220697938999e-05,
+          "ZZ": 1.816861595632142e-05,
+          "IZ": 9.841893782351105e-09,
+          "IX": 1.0721309188833964e-05,
+          "YY": 2.7479957724903702e-08
+        }
+      },
+      {
+        "q": 32,
+        "maintained_input_bound": 0.003125,
+        "max_exact_transfer_standard_error": 0.0,
+        "shots_per_nonzero_prefix": 0,
+        "fresh_preparations": 0,
+        "unknown_prefix_queries": 0,
+        "unknown_evolution_time": 0.0,
+        "known_inverse_total_target_simulation_time": 0.0,
+        "stage": 4,
+        "output_bound": 0.0015625,
+        "uniform_waveform_error": 3.977398647714713e-06,
+        "error_over_input_bound": 0.001272767567268708,
+        "error_over_previous_actual_error": 0.21891588535288808,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 2.955021643727574e-06,
+          "ZZ": 3.977398647714713e-06,
+          "IZ": 1.6861109814545383e-09,
+          "IX": 2.348345983975456e-06,
+          "YY": 1.4316059219382736e-09
+        }
+      },
+      {
+        "q": 64,
+        "maintained_input_bound": 0.0015625,
+        "max_exact_transfer_standard_error": 0.0,
+        "shots_per_nonzero_prefix": 0,
+        "fresh_preparations": 0,
+        "unknown_prefix_queries": 0,
+        "unknown_evolution_time": 0.0,
+        "known_inverse_total_target_simulation_time": 0.0,
+        "stage": 5,
+        "output_bound": 0.00078125,
+        "uniform_waveform_error": 8.707148157555154e-07,
+        "error_over_input_bound": 0.0005572574820835298,
+        "error_over_previous_actual_error": 0.21891565137826968,
+        "within_next_bound": true,
+        "per_term_error": {
+          "XI": 6.464817776892628e-07,
+          "ZZ": 8.707148157555154e-07,
+          "IZ": 2.667978253624597e-10,
+          "IX": 5.143674338512354e-07,
+          "YY": 6.872138903481358e-10
+        }
+      }
+    ],
+    "total_fresh_preparations": 0,
+    "total_unknown_prefix_queries": 0,
+    "total_unknown_evolution_time": 0.0,
+    "total_known_inverse_target_simulation_time": 0.0,
+    "maximum_coherent_echo_count": 64
+  },
+  "finite_shot_repetition_summary": {
+    "count": 12,
+    "all_stage_bound_successes": 12,
+    "final_error_min": 0.0001930366086022817,
+    "final_error_median": 0.0003167615543170091,
+    "final_error_max": 0.0007247202209685927,
+    "final_errors": [
+      0.0005222440166887663,
+      0.0002639190693510403,
+      0.0001930366086022817,
+      0.00038044678371629065,
+      0.00023325468750000908,
+      0.00031850904613403954,
+      0.0004927722104478167,
+      0.0007247202209685927,
+      0.0002811484374999909,
+      0.0003150140624999787,
+      0.000330750000000005,
+      0.0002200421435772318
+    ],
+    "stage_errors_by_trial": [
+      [
+        0.006387871499999989,
+        0.002762472547257016,
+        0.0023457172657247436,
+        0.000742668750000013,
+        0.0008850074209876896,
+        0.0005222440166887663
+      ],
+      [
+        0.009474311000000039,
+        0.002830224999999981,
+        0.001518075000000006,
+        0.001117493750000024,
+        0.0003814593750000008,
+        0.0002639190693510403
+      ],
+      [
+        0.008940273750000005,
+        0.006463125,
+        0.0018930883392209996,
+        0.0010557000000000196,
+        0.0004042676322474064,
+        0.0001930366086022817
+      ],
+      [
+        0.009702008750000006,
+        0.004353075000000001,
+        0.0019750208844349546,
+        0.0009247713156568549,
+        0.0007967531250000185,
+        0.00038044678371629065
+      ],
+      [
+        0.006330554999999991,
+        0.0018634106981464795,
+        0.001091474999999994,
+        0.000835993360863582,
+        0.0009801000000000102,
+        0.00023325468750000908
+      ],
+      [
+        0.004695455249999998,
+        0.0017711586261282045,
+        0.0015672099809933798,
+        0.0011867604488624791,
+        0.0005259093750000015,
+        0.00031850904613403954
+      ],
+      [
+        0.007541261499999989,
+        0.005100431443594039,
+        0.002701947737747523,
+        0.0007473312500000293,
+        0.0003406141782782993,
+        0.0004927722104478167
+      ],
+      [
+        0.003970127458820769,
+        0.006775400499172392,
+        0.0016380874999999985,
+        0.0007425312499999865,
+        0.0005381499999999888,
+        0.0007247202209685927
+      ],
+      [
+        0.010266392000000034,
+        0.004880250000000006,
+        0.0015385920278896382,
+        0.0016783927807742763,
+        0.0004002750000000019,
+        0.0002811484374999909
+      ],
+      [
+        0.0076411999999999956,
+        0.00505124457901706,
+        0.0009067250000000106,
+        0.0008965124999999849,
+        0.0007008500000000183,
+        0.0003150140624999787
+      ],
+      [
+        0.005453489499999996,
+        0.0050772412576491404,
+        0.002287375000000005,
+        0.001172020652800952,
+        0.0003394406250000069,
+        0.000330750000000005
+      ],
+      [
+        0.0165558575,
+        0.004859525000000004,
+        0.0028993476757674147,
+        0.0008950000000000109,
+        0.00041350719438076563,
+        0.0002200421435772318
+      ]
+    ],
+    "seeds": [
+      20261023,
+      20261024,
+      20261025,
+      20261026,
+      20261027,
+      20261028,
+      20261029,
+      20261030,
+      20261031,
+      20261032,
+      20261033,
+      20261034
+    ],
+    "interpretation": "Empirical fixed-seed success frequency only; no confidence guarantee or replacement for the theorem."
+  },
+  "shot_budget_sweep": [
+    {
+      "shots_per_prefix_per_stage": 100000,
+      "all_stage_bounds_held": false,
+      "final_error": 0.006593174939944329,
+      "error_over_final_target_bound": 8.43926392312874
+    },
+    {
+      "shots_per_prefix_per_stage": 1000000,
+      "all_stage_bounds_held": false,
+      "final_error": 0.0012820143255473668,
+      "error_over_final_target_bound": 1.6409783367006294
+    },
+    {
+      "shots_per_prefix_per_stage": 20000000,
+      "all_stage_bounds_held": true,
+      "final_error": 0.00018645783940644144,
+      "error_over_final_target_bound": 0.23866603444024503
+    }
+  ],
+  "matched_echo_fisher_diagnostic": {
+    "scope": "Single residual-amplitude family at one fixed prefix; compares identical product process measurements on q-fold echoes versus independent q=1 echoes. Does not optimize the independent-prefix protocol, include control synthesis, or establish a practical crossover.",
+    "prefix": 0.375,
+    "residual_amplitude": 0.002,
+    "derivative_step": 1e-05,
+    "rows": [
+      {
+        "q": 1,
+        "classical_fisher_information_per_product_shadow_shot": 0.06256167026195752,
+        "information_over_q_squared_times_q1": 1.0,
+        "information_per_unknown_time_relative_to_q1": 1.0
+      },
+      {
+        "q": 2,
+        "classical_fisher_information_per_product_shadow_shot": 0.2502466695122766,
+        "information_over_q_squared_times_q1": 0.9999999539032707,
+        "information_per_unknown_time_relative_to_q1": 1.9999999078065414
+      },
+      {
+        "q": 4,
+        "classical_fisher_information_per_product_shadow_shot": 1.0009864808506137,
+        "information_over_q_squared_times_q1": 0.9999997568991668,
+        "information_per_unknown_time_relative_to_q1": 3.999999027596667
+      },
+      {
+        "q": 8,
+        "classical_fisher_information_per_product_shadow_shot": 4.003942775280509,
+        "information_over_q_squared_times_q1": 0.9999989706444967,
+        "information_per_unknown_time_relative_to_q1": 7.999991765155974
+      },
+      {
+        "q": 16,
+        "classical_fisher_information_per_product_shadow_shot": 16.015720939932166,
+        "information_over_q_squared_times_q1": 0.9999958386605343,
+        "information_per_unknown_time_relative_to_q1": 15.99993341856855
+      },
+      {
+        "q": 32,
+        "classical_fisher_information_per_product_shadow_shot": 64.06208461530676,
+        "information_over_q_squared_times_q1": 0.9999833643376582,
+        "information_per_unknown_time_relative_to_q1": 31.999467658805063
+      },
+      {
+        "q": 64,
+        "classical_fisher_information_per_product_shadow_shot": 256.2355699837525,
+        "information_over_q_squared_times_q1": 0.9999335366387192,
+        "information_per_unknown_time_relative_to_q1": 63.99574634487803
+      }
+    ]
+  },
+  "systematic_controller_bias_diagnostic": {
+    "scope": "Exact, noiseless expectation values at one prefix with a systematic per-pair known-controller unitary error. Measures the added bias in inferred response coefficients; does not claim a full noisy waveform guarantee.",
+    "prefix": 0.375,
+    "implemented_pair": "E_t exp(-i b ZI), with the rightmost error rotation acting before the nominal inverse.",
+    "fixed_angle": 0.0002,
+    "scaled_angle_rule": "b=(fixed_angle/initial_bound)*delta",
+    "rows": [
+      {
+        "delta": 0.05,
+        "q": 2,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019997510949043302,
+        "fixed_bias_over_delta": 0.00399950218980866,
+        "scaled_rotation_angle": 0.0002,
+        "scaled_max_response_coefficient_bias": 0.00019997510949043302,
+        "scaled_bias_over_delta": 0.00399950218980866
+      },
+      {
+        "delta": 0.025,
+        "q": 4,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019996408063336675,
+        "fixed_bias_over_delta": 0.00799856322533467,
+        "scaled_rotation_angle": 0.0001,
+        "scaled_max_response_coefficient_bias": 9.998207231216963e-05,
+        "scaled_bias_over_delta": 0.003999282892486785
+      },
+      {
+        "delta": 0.0125,
+        "q": 8,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019995742255817759,
+        "fixed_bias_over_delta": 0.015996593804654204,
+        "scaled_rotation_angle": 5e-05,
+        "scaled_max_response_coefficient_bias": 4.998943562733679e-05,
+        "scaled_bias_over_delta": 0.003999154850186943
+      },
+      {
+        "delta": 0.00625,
+        "q": 16,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019995296776969588,
+        "fixed_bias_over_delta": 0.03199247484315134,
+        "scaled_rotation_angle": 2.5e-05,
+        "scaled_max_response_coefficient_bias": 2.4994288944125257e-05,
+        "scaled_bias_over_delta": 0.003999086231060041
+      },
+      {
+        "delta": 0.003125,
+        "q": 32,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019994709953667566,
+        "fixed_bias_over_delta": 0.06398307185173621,
+        "scaled_rotation_angle": 1.25e-05,
+        "scaled_max_response_coefficient_bias": 1.2497033662762769e-05,
+        "scaled_bias_over_delta": 0.0039990507720840856
+      },
+      {
+        "delta": 0.0015625,
+        "q": 64,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019992981808968972,
+        "fixed_bias_over_delta": 0.1279550835774014,
+        "scaled_rotation_angle": 6.25e-06,
+        "scaled_max_response_coefficient_bias": 6.248488680178485e-06,
+        "scaled_bias_over_delta": 0.00399903275531423
+      },
+      {
+        "delta": 0.00078125,
+        "q": 128,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019986384975343604,
+        "fixed_bias_over_delta": 0.2558257276843981,
+        "scaled_rotation_angle": 3.125e-06,
+        "scaled_max_response_coefficient_bias": 3.1242372462803326e-06,
+        "scaled_bias_over_delta": 0.003999023675238826
+      },
+      {
+        "delta": 0.000390625,
+        "q": 256,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019960169342802465,
+        "fixed_bias_over_delta": 0.510980335175743,
+        "scaled_rotation_angle": 1.5625e-06,
+        "scaled_max_response_coefficient_bias": 1.5621168427887255e-06,
+        "scaled_bias_over_delta": 0.003999019117539137
+      },
+      {
+        "delta": 0.0001953125,
+        "q": 512,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019855592433726217,
+        "fixed_bias_over_delta": 1.0166063326067822,
+        "scaled_rotation_angle": 7.8125e-07,
+        "scaled_max_response_coefficient_bias": 7.810579755455749e-07,
+        "scaled_bias_over_delta": 0.003999016834793343
+      },
+      {
+        "delta": 9.765625e-05,
+        "q": 1024,
+        "fixed_rotation_angle": 0.0002,
+        "fixed_max_response_coefficient_bias": 0.00019440605630048852,
+        "fixed_bias_over_delta": 1.9907180165170024,
+        "scaled_rotation_angle": 3.90625e-07,
+        "scaled_max_response_coefficient_bias": 3.9052887631643525e-07,
+        "scaled_bias_over_delta": 0.0039990156934802965
+      }
+    ],
+    "interpretation": "A fixed per-pair error produces an approximately fixed response-coefficient bias, whose ratio to the shrinking residual grows. Scaling the controller error with delta keeps that relative bias small in this example. This is not noise robustness."
+  },
+  "unpaid_or_excluded_resources": [
+    "Dense propagation is used only to generate exact small-system outcome distributions.",
+    "Known inverse controls are exact in this experiment; requested simulation times and invocation counts are recorded, but compiled gate counts and hardware execution times are not simulated.",
+    "The nominal starting model is supplied; this experiment does not implement the coarse initializer.",
+    "The shot counts can be very large and are reported explicitly; multinomial count generation does not reduce the physical experimental cost.",
+    "Main waveform-learning runs assume ideal controls and omit environmental noise, schedule jitter, and SPAM bias; the separate controller-bias diagnostic includes a systematic unitary control error.",
+    "The demonstration learns all 15 nonidentity response coefficients for two qubits, rather than optimizing the constant-support coefficient subset.",
+    "Uniform cubic errors are maximized using floating-point derivative roots; the code does not implement interval-certified polynomial maxima."
+  ],
+  "runtime_seconds": 0.8479867350033601
+}
