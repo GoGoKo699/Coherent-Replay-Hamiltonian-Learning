@@ -37,7 +37,7 @@ H(t)=\sum_{a\in\mathcal A}h_a(t)P_a,
 \sup_{t\in[0,1]}\sup_i\sum_{a:\,i\in\mathrm{supp}(P_a)}|h_a(t)|\leq J.
 ```
 
-The fixed dimensionless strength is the physical strength multiplied by $`T`$. In particular, every coefficient has supremum at most $`J`$. Constants below may depend on $`J`$ and the fixed geometry, and can grow rapidly with the physical horizon. The theorem is not uniform in a growing $`JT`$.
+The fixed dimensionless strength is the physical strength multiplied by $`T`$. In particular, every coefficient has supremum at most $`J`$. Constants below may depend on $`J`$ and the fixed geometry, and can grow rapidly with the physical horizon. The theorem is not uniform in a growing dimensionless strength $`J`$.
 
 Write $`U_H(t,s)`$ for the time-ordered propagator from $`s`$ to $`t`$, and $`U_H(t)=U_H(t,0)`$. Schrödinger evolution uses $`\partial_t U_H(t)=-iH(t)U_H(t)`$.
 

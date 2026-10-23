@@ -51,6 +51,12 @@ U_{\widehat H}(t,s)^\dagger\,ds.
 
 Locality controls the measured response even when the total residual Hamiltonian is extensive. Stable interpolation then recovers the coefficient functions throughout the interval.
 
+## Learning route
+
+The single educational anchor is **Nielsen and Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition (2010)**. The [learning entrypoint](learning/README.md) connects its foundations to the project.
+
+Start with [the source bridge and worked one-qubit example](learning/BRIDGE.md), then follow [the 30 milestones](learning/MILESTONES.md). Eleven background milestones assemble the experimental problem; nineteen narrative milestones develop the local response, temporal inverse, complete resource statement and physical interpretation. Each phase progresses from individual ingredients to a synthesis of the result.
+
 ## Reproduce the finite checks
 
 From the repository root:

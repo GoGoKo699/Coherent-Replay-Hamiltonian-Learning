@@ -74,6 +74,10 @@ so only a bounded set of additional local Pauli coefficients is needed for each 
 
 **Classical processing and quantum access should be matched.** F2026 already has polynomial classical postprocessing, so its comparison concerns acquisition resources. Classical fitting, direct integration and tensor-network propagation can be effective in regimes where their representations remain tractable. This repository does not give a universal computational separation from those methods, or a noise-independent practical crossover. Its claim is an experimental precision law under the stated coherent access and paid implementation model.
 
+## Educational anchor
+
+<a id="nc2010"></a>**NC2010.** Michael A. Nielsen and Isaac L. Chuang, *Quantum Computation and Quantum Information*, 10th Anniversary Edition, Cambridge University Press (2010), ISBN 9781107002173. The [publisher's page](https://www.cambridge.org/highereducation/books/quantum-computation-and-quantum-information/01E10196D0A682A6AEFFEA52D53BE9AE) and [official contents](https://assets.cambridge.org/97811070/02173/frontmatter/9781107002173_frontmatter.pdf) establish the edition and section numbering. This is the single educational anchor. The [source bridge](../learning/BRIDGE.md) connects its foundations to the project's specialized arguments; the papers above retain their roles as research precedents and proof dependencies.
+
 ## Source versions
 
 The detailed comparisons use F2026 v2 (13 October 2026), HKOT2023 v2 (29 July 2024), D2024 v3 (5 August 2024), Hu2025 v2 (1 July 2025), S2026 v1 (30 April 2026), P2017 v3 (8 March 2017), Dong2021 v1 (13 May 2021), Zhao2024 v2 (16 October 2024), He2026 v2 (29 September 2026), KR2026 v1 (30 September 2026), and Li2025 v1 (2 September 2025). Li's later [Physical Review A publication](https://doi.org/10.1103/y2vg-tb3f) is separately identifiable; statements about its appendix resource model above refer to the accessible v1. J2026's full-text comparison uses the dated author copy linked above. This is a scoped comparison, rather than an exhaustive priority claim.

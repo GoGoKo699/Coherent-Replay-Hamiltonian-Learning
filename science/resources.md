@@ -87,7 +87,7 @@ H_{\rm inv}(s)=-\widehat H(t-s),\qquad 0\leq s\leq t.
 
 Only known coefficients enter this simulation. A circuit is compiled once for each model and prefix time and then reused for the $`q_j`$ repetitions. A classical loop can represent the repetitions, but every executed gate is still charged.
 
-For a finite-range lattice, [HHKL2020](../references/RELATED_WORK.md#hhkl2020), Theorem 1, gives near-linear gate count in volume and simulation duration, with polylogarithmic accuracy dependence for efficiently computable, piecewise slowly varying local terms. A bounded degree-$`m`$ polynomial has derivative $`O((1+m^2)J)`$ by Markov's inequality. Polynomial time rescaling makes it satisfy the theorem's smoothness convention. Polynomial evaluation in a stable basis, finite-precision arithmetic and local circuit synthesis contribute polynomial factors in $`m`$ and logarithmic factors in the requested accuracy.
+For a finite-range lattice, [HHKL2020](../references/RELATED_WORK.md#hhkl2020), Theorem 1, gives near-linear gate count in volume and simulation duration, with polylogarithmic accuracy dependence for efficiently computable, piecewise slowly varying local terms. Every accepted reference coefficient has amplitude at most $`\bar J=2(J+1)`$ by the guard, so its degree-$`m`$ polynomial has derivative $`O((1+m^2)\bar J)`$ by Markov's inequality. Polynomial time rescaling makes it satisfy the theorem's smoothness convention. Polynomial evaluation in a stable basis, finite-precision arithmetic and local circuit synthesis contribute polynomial factors in $`m`$ and logarithmic factors in the requested accuracy.
 
 For one inverse with operator error at most $`\nu`$, this supplies a bound of the form
 

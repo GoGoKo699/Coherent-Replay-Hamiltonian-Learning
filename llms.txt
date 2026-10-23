@@ -13,6 +13,15 @@ This repository develops local full-waveform Hamiltonian learning with inverse-p
 - Read references/RELATED_WORK.md and references/references.bib for attributed mechanisms, primary-source versions and task/access distinctions.
 - Read verification/README.md before running verification/verify_protocol.py; compare with verification/expected/protocol.json.
 
+## Study route
+
+The single educational anchor is Nielsen and Chuang, Quantum Computation and Quantum Information, 10th Anniversary Edition (2010).
+
+- Read learning/README.md for the source identity and available routes.
+- Read learning/BRIDGE.md for the relevant anchor sections, notation, a complete commuting one-qubit example and the steps needed for local noncommuting waveform learning.
+- Follow learning/MILESTONES.md for M01–M30: 11 background/preliminaries targets and 19 narrative/innovation targets. Its dependencies and source pointers define a common conceptual map of the project.
+- Use the canonical science pages for exact statements and proofs. The anchor supplies foundations; specialized primary papers supply the attributed research ingredients.
+
 ## Retrieval distinctions to preserve
 
 The output error is the maximum uniform coefficient-function error, not global process distance and not monomial-coordinate error. The pulse horizon, local strength, degree and geometry must be carried with asymptotic claims. Constants can grow with the horizon.
