@@ -66,7 +66,7 @@ python3 -m pip install -r verification/requirements.txt
 python3 verification/run_all.py
 ```
 
-The [verification wrapper](verification/CHECKS.md) checks local navigation and the learning map, reruns the finite experiment, and compares its scientific output with the committed reference using documented numerical tolerances. It leaves the reference untouched and reports any mismatch with a nonzero exit status. The same checks run in continuous integration.
+The [verification wrapper](verification/CHECKS.md) checks local navigation and the learning map, compares deterministic numerical results and resource counts with the committed reference, and checks sampled-record consistency and repeatability in two fresh runs on the current machine. Cross-machine differences in the historical stochastic trajectory are explicitly reported; `--strict-reference` additionally requires that trajectory to match. Numerical tolerances and the distinction between these checks are documented. The reference is never overwritten. The default checks also run in continuous integration.
 
 The two-qubit experiment independently checks the echo orientation, response identity, signed process estimator and finite-shot reconstruction. Its noncommuting true and nominal pulses have **exactly the same completed unitary**, while their intermediate prefixes differ.
 

@@ -29,3 +29,12 @@ jobs:
         run: python -m unittest discover -s verification -p 'test_*.py' -v
       - name: Verify navigation, learning map and finite results
         run: python verification/run_all.py
+      - name: Show numerical diagnostics on failure
+        if: failure()
+        run: |
+          for log in verification/generated/*.stdout.txt verification/generated/*.stderr.txt; do
+            if [ -f "$log" ]; then
+              echo "=== $log ==="
+              cat "$log"
+            fi
+          done

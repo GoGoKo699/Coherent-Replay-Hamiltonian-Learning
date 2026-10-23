@@ -1,17 +1,20 @@
-"""Check navigation, learning-map integrity and the stored finite experiment.
+"""Check navigation, learning-map integrity and the finite experiment.
 
 Run from any directory with Python 3.12 or later. The default run needs the
 pinned numerical dependencies. --structure-only uses only the standard library.
+--strict-reference also requires historical stochastic trajectories to match.
 These checks do not prove the analytical claims or verify hosted rendering.
 """
 from __future__ import annotations
 
 import argparse
+from copy import deepcopy
 import json
 import math
 from pathlib import Path
 import re
 import subprocess
+import statistics
 import sys
 from typing import Any
 from urllib.parse import unquote, urlsplit
@@ -153,9 +156,115 @@ def compare(expected: Any, actual: Any, path: str = "$") -> None:
         raise ValueError(f"{path}: {actual!r} differs from {expected!r}")
 
 
+# Only these sampled quantities may differ from the historical reference.
+# The deterministic ideal experiment and every resource count remain compared.
+SAMPLED_TRIAL = (
+    "all_stages_within_maintained_bounds", "final_uniform_error",
+    "learned_endpoint_operator_error", "learned_chebyshev_coefficients",
+)
+SAMPLED_STAGE = (
+    "max_exact_transfer_standard_error", "uniform_waveform_error",
+    "error_over_input_bound", "error_over_previous_actual_error",
+    "within_next_bound", "per_term_error",
+)
+SAMPLED_SUMMARY = (
+    "all_stage_bound_successes", "final_error_min", "final_error_median",
+    "final_error_max", "final_errors", "stage_errors_by_trial",
+)
+
+
+def deterministic_projection(result: dict[str, Any]) -> dict[str, Any]:
+    """Remove an explicit whitelist of sampled values, not whole experiments."""
+    projected = deepcopy(result)
+    trial = projected["finite_shot_example"]
+    for key in SAMPLED_TRIAL:
+        del trial[key]
+    del trial["waveform_samples"]["learned"]
+    for row in trial["history"]:
+        for key in SAMPLED_STAGE:
+            del row[key]
+    for key in SAMPLED_SUMMARY:
+        del projected["finite_shot_repetition_summary"][key]
+    for row in projected["shot_budget_sweep"]:
+        for key in ("all_stage_bounds_held", "final_error", "error_over_final_target_bound"):
+            del row[key]
+    return projected
+
+
+def check_shape(expected: Any, actual: Any, path: str = "$") -> None:
+    """Check all result keys, dimensions, types and finiteness before projecting."""
+    if type(expected) is not type(actual):
+        raise ValueError(f"{path}: result type changed")
+    if isinstance(expected, dict):
+        if set(expected) != set(actual):
+            raise ValueError(f"{path}: result keys changed")
+        for key in expected:
+            check_shape(expected[key], actual[key], f"{path}.{key}")
+    elif isinstance(expected, list):
+        if len(expected) != len(actual):
+            raise ValueError(f"{path}: result dimensions changed")
+        for i, (left, right) in enumerate(zip(expected, actual)):
+            check_shape(left, right, f"{path}[{i}]")
+    elif isinstance(actual, float) and not math.isfinite(actual):
+        raise ValueError(f"{path}: nonfinite result")
+
+
+def check_sampled_consistency(result: dict[str, Any]) -> None:
+    """Validate recorded errors and flags without treating success as a promise."""
+    trial = result["finite_shot_example"]
+    summary = result["finite_shot_repetition_summary"]
+    history = trial["history"]
+    previous = trial["initial_uniform_error"]
+    for row in history:
+        error = row["uniform_waveform_error"]
+        errors = list(row["per_term_error"].values())
+        if min(errors + [error, row["max_exact_transfer_standard_error"]]) < 0:
+            raise ValueError("Negative sampled error or standard error")
+        compare(max(errors), error, "sampled.maximum_error")
+        compare(error / row["maintained_input_bound"], row["error_over_input_bound"])
+        compare(error / previous, row["error_over_previous_actual_error"])
+        compare(error <= row["output_bound"], row["within_next_bound"])
+        previous = error
+    compare(previous, trial["final_uniform_error"])
+    compare(all(row["within_next_bound"] for row in history), trial["all_stages_within_maintained_bounds"])
+    stage_errors = summary["stage_errors_by_trial"]
+    if len(stage_errors) != summary["count"] or any(len(row) != len(history) for row in stage_errors):
+        raise ValueError("Wrong number of sampled trials or stages")
+    if any(error < 0 for row in stage_errors for error in row):
+        raise ValueError("Negative trial error")
+    compare([row["uniform_waveform_error"] for row in history], stage_errors[0])
+    final = [row[-1] for row in stage_errors]
+    compare(final, summary["final_errors"])
+    compare(min(final), summary["final_error_min"])
+    compare(statistics.median(final), summary["final_error_median"])
+    compare(max(final), summary["final_error_max"])
+    successes = sum(all(error <= step["output_bound"] for error, step in zip(row, history)) for row in stage_errors)
+    compare(successes, summary["all_stage_bound_successes"])
+    for row in result["shot_budget_sweep"]:
+        if row["final_error"] < 0:
+            raise ValueError("Negative shot-sweep error")
+        compare(row["final_error"] / history[-1]["output_bound"], row["error_over_final_target_bound"])
+        if row["all_stage_bounds_held"] and row["final_error"] > history[-1]["output_bound"]:
+            raise ValueError("Shot-sweep success contradicts its final error")
+
+
+def run_experiment(path: Path) -> dict[str, Any]:
+    path.unlink(missing_ok=True)
+    completed = subprocess.run(
+        [sys.executable, str(ROOT / "verification/verify_protocol.py"), "--output", str(path)],
+        cwd=ROOT, capture_output=True, text=True, timeout=300, check=False,
+    )
+    path.with_suffix(".stdout.txt").write_text(completed.stdout, encoding="utf-8")
+    path.with_suffix(".stderr.txt").write_text(completed.stderr, encoding="utf-8")
+    if completed.returncode:
+        raise ValueError(f"Numerical reproduction failed:\n{completed.stderr[-4000:]}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--structure-only", action="store_true")
+    parser.add_argument("--strict-reference", action="store_true", help="Also require historical stochastic trajectories to match")
     args = parser.parse_args()
     for name in REQUIRED:
         if not (ROOT / name).is_file():
@@ -169,25 +278,31 @@ def main() -> int:
 
     generated = ROOT / "verification/generated"
     generated.mkdir(exist_ok=True)
-    result_path = generated / "protocol.json"
-    result_path.unlink(missing_ok=True)  # Never mistake a stale output for a rerun.
-    completed = subprocess.run(
-        [sys.executable, str(ROOT / "verification/verify_protocol.py"), "--output", str(result_path)],
-        cwd=ROOT, capture_output=True, text=True, timeout=300, check=False,
-    )
-    (generated / "protocol.stdout.txt").write_text(completed.stdout, encoding="utf-8")
-    (generated / "protocol.stderr.txt").write_text(completed.stderr, encoding="utf-8")
-    if completed.returncode:
-        raise ValueError(f"Numerical reproduction failed:\n{completed.stderr[-4000:]}")
     expected = json.loads((ROOT / "verification/expected/protocol.json").read_text(encoding="utf-8"))
-    actual = json.loads(result_path.read_text(encoding="utf-8"))
-    compare(expected, actual)
-    print(f"PASS: stored results reproduced (absolute tolerance {ABS_TOL:g}, relative tolerance {REL_TOL:g}).")
+    actual = run_experiment(generated / "protocol.json")
+    check_shape(expected, actual)
+    compare(deterministic_projection(expected), deterministic_projection(actual))
+    check_sampled_consistency(expected)
+    check_sampled_consistency(actual)
+    print("PASS: deterministic results, seeds, resource counts and sampled-record consistency.", flush=True)
+    repeat = run_experiment(generated / "protocol.repeat.json")
+    compare(actual, repeat)
+    print("PASS: all scientific fields repeat in two fresh runs on this machine.")
+    try:
+        compare(expected, actual)
+    except ValueError as error:
+        print(f"Historical stochastic trajectory differs: {error}")
+        if args.strict_reference:
+            raise
+        print("This difference is reported, not counted as reproduction of the historical sample.")
+    else:
+        print("Historical stochastic trajectory also matches within the stated tolerances.")
     print("Recorded environment:", json.dumps(expected["environment"], sort_keys=True))
     print("Current environment:", json.dumps(actual["environment"], sort_keys=True))
     summary = actual["finite_shot_repetition_summary"]
     finite = actual["finite_shot_example"]
-    print(f"Fixed-seed stage-bound successes: {summary['all_stage_bound_successes']}/{summary['count']}.")
+    print(f"Observed stage-bound successes: {summary['all_stage_bound_successes']}/{summary['count']} (not a pass criterion).")
+    print(f"Observed final-error range: {summary['final_error_min']:.9g} to {summary['final_error_max']:.9g}.")
     print(f"Represented shots per run: {finite['total_fresh_preparations']:,}; unknown-prefix calls: {finite['total_unknown_prefix_queries']:,}.")
     print("These are regression checks, not independent proof or hardware validation.")
     return 0
@@ -196,6 +311,6 @@ def main() -> int:
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except (ValueError, OSError, subprocess.TimeoutExpired) as error:
+    except (ValueError, OSError, KeyError, IndexError, ZeroDivisionError, subprocess.TimeoutExpired) as error:
         print(f"FAIL: {error}", file=sys.stderr)
         raise SystemExit(1)
