@@ -216,7 +216,7 @@ Write
 ```math
 B=\sigma_B\bigotimes_jB_j,\qquad
 \sigma_B\in\{-1,1\},\qquad
-w=|\mathrm{supp}B|.
+w=|\mathrm{supp}\,B|.
 ```
 
 In one snapshot, independently choose a uniform Pauli axis $`a_j\in\{X,Y,Z\}`$ and eigenvalue $`s_j\in\{-1,1\}`$ on each input qubit. Prepare their product eigenstate, apply the repeated echo, and measure every qubit in an independent uniform Pauli axis $`b_j`$. Let $`y_i`$ be the measured eigenvalue at the site of $`Q`$.
@@ -225,7 +225,7 @@ Define
 
 ```math
 X_B=\sigma_B3^w
-\prod_{j\in\mathrm{supp}B}
+\prod_{j\in\mathrm{supp}\,B}
 s_j\,\mathbf1\{a_j=B_j\},
 \qquad
 Y_Q=3y_i\,\mathbf1\{b_i=Q\}.
@@ -281,7 +281,7 @@ i[P_a,\widehat H(t)]
 =\sum_{S\in\mathcal S_a}c_{a,S}(t)S.
 ```
 
-Only reference terms meeting $`\mathrm{supp}P_a`$ can contribute. There are at most $`dk`$ of them, every resulting nonidentity Pauli has weight at most $`2k-1`$, and
+Only reference terms meeting $`\mathrm{supp}\,P_a`$ can contribute. There are at most $`dk`$ of them, every resulting nonidentity Pauli has weight at most $`2k-1`$, and
 
 ```math
 \sum_{S\in\mathcal S_a}|c_{a,S}(t)|
